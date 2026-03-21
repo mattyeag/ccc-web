@@ -1,3 +1,11 @@
+/* COLORS */
+/* 
+red: #661f2e
+blue: #0d1b3b
+bright blue: #183566
+
+*/
+
 /* ------------------------------
    Base Styles — Mobile First
 --------------------------------*/
@@ -7,6 +15,7 @@ body {
   color: black;
   line-height: 1.6;
   overflow-x: hidden;
+  /* font-size: 15px; */
 }
 
 h1, h2, h3 {
@@ -14,15 +23,37 @@ h1, h2, h3 {
   font-weight: 700;
 }
 
-.section {
-  padding: 50px 20px;
-  max-width: 900px;
+.section-a {
+  border-bottom: 1px solid #d5d5d5;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.06);  padding: 50px 20px;
   margin: auto;
+  align-items: center;
+  /* background-color: #183566; */
+  background: linear-gradient(180deg, #ffffff 0%, #ffffff 60%);
+
 }
 
-.spacer {
-  height: 2px;
-  background-color: black;
+.section-b {
+  border-bottom: 1px solid #d5d5d5;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.06);
+  padding: 50px 20px;
+  margin: auto;
+  align-items: center;
+  /* background-color: darkred; */
+    /* background: linear-gradient(180deg, #fef0f0 0%, #eef3ff 60%); */
+
+}
+
+/* SECTION CARD */
+.section-card {
+  margin: auto;
+  position: relative;
+  background: white;
+  border-radius: 5px;
+  overflow: hidden;
+  padding: 60px 20px;
+  max-width: 900px;
+  /* box-shadow: 0 15px 40px rgba(0,0,0,0.06); */
 }
 
 /* ------------------------------
@@ -30,8 +61,10 @@ h1, h2, h3 {
 --------------------------------*/
 header {
   /* background: #1e1e1e; */
-  background-color: black;
-  color: white;
+  /* background-color: white; */
+  background: linear-gradient(180deg, #f4f7fb 0%, #ffffff 60%);
+  /* background: linear-gradient(169deg, #ffffff 41%, #cae7ff 108%); */
+  color: black;
   padding: 60px 20px;
   text-align: center;
 }
@@ -43,7 +76,11 @@ header h1 {
 
 .logo {
   max-width: 100%;
-  border: 1px solid #ccc;
+  /* border: 1px solid #ccc; */
+}
+
+header img{
+  mix-blend-mode: multiply;
 }
 
 /* ------------------------------
@@ -70,21 +107,21 @@ header h1 {
 /* ------------------------------
    Intro Section
 --------------------------------*/
-#intro {
-  border-bottom: 1px solid #ccc;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
-  position: relative;
-  /* background-color: #009d9cde; */
-  /* background-image: url('/assets/img/logo-bands.png'); */
+
+
+.section-a h2 {
+  color: #2b5baf;
 }
 
-#band-image {
- position: absolute;
- bottom: 0;
- right: 0;
- max-width: 50%;
- /* margin-top: 20px; */
+.section-b h2 {
+  color: #ba2e2e;
 }
+
+#intro {
+  padding-top: 5rem;
+}
+
+
 
 
 /* ------------------------------
@@ -100,15 +137,12 @@ header h1 {
   z-index: 1;
 }
 
- section {
-  /* background-color: #f4a000; */
-  position: relative;
-  border-bottom: 1px solid #ccc;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
-}
 
-section img {
-  z-index: -1;
+.section-card img {
+  max-width: 30%;
+  position: absolute;
+  right: 0;
+  bottom: 0;
 }
 
 
@@ -193,37 +227,6 @@ form button {
   margin-top: 40px;
 }
 
-/* ------------------------------
-   Larger Screens (Tablet+)
---------------------------------*/
-@media (min-width: 700px) {
-  header h1 {
-    font-size: 2.5rem;
-  }
-
-  .instructor {
-    flex-direction: row;
-  }
-}
-
-/* ------------------------------
-   Desktop Enhancements
---------------------------------*/
-@media (min-width: 1000px) {
-  nav a {
-    font-size: 1rem;
-  }
-
-  header {
-    padding: 80px 20px;
-  }
-
-  .section {
-    padding: 70px 20px;
-  }
-}
-
-
 /* 
 RADIO BUTTONS
 */
@@ -269,4 +272,70 @@ form fieldset input[type="radio"] {
   align-items: center;
   /* gap: 20px; */
   justify-content: center;
+}
+
+
+/* Spacer for the tree image */
+.spacer-tree {
+  display: flex;
+  justify-content: center;
+  margin: 40px 0;
+  max-width: 100%;
+}
+
+.spacer-tree p {
+  color: rgb(192, 31, 31);
+  margin-left: 1.5rem;
+  margin-right: 1.5rem;
+}
+
+.spacer-tree img{
+  max-width: 25%;
+}
+
+/* .spacer-whisp {
+  width: 100%;
+} */
+
+
+
+
+/* ------------------------------
+   Larger Screens (Tablet+)
+--------------------------------*/
+@media (min-width: 700px) {
+  header h1 {
+    font-size: 2.5rem;
+  }
+
+  .instructor {
+    flex-direction: row;
+  }
+
+.section-card img {
+  max-width: 15%;
+}
+
+}
+
+/* ------------------------------
+   Desktop Enhancements
+--------------------------------*/
+@media (min-width: 1000px) {
+  nav a {
+    font-size: 1rem;
+  }
+
+  header {
+    padding: 80px 20px;
+  }
+
+  .section {
+    padding: 70px 20px;
+  }
+
+  .spacer-tree img {
+    max-width: 10%;
+  }
+
 }
