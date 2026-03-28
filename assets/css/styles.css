@@ -15,7 +15,7 @@ body {
   color: black;
   line-height: 1.6;
   overflow-x: hidden;
-  /* font-size: 15px; */
+  font-size: 17px;
 }
 
 h1, h2, h3 {
@@ -67,7 +67,7 @@ header {
   background: linear-gradient(180deg, #f4f7fb 0%, #ffffff 60%);
   /* background: linear-gradient(169deg, #ffffff 41%, #cae7ff 108%); */
   color: black;
-  padding: 100px 20px;
+  padding: 100px 0px;
   text-align: center;
 }
 
@@ -354,7 +354,7 @@ form fieldset input[type="radio"] {
   }
 
   header {
-    padding: 10px 10px;
+    padding: 5rem 5rem;
   }
 
   header > img {
