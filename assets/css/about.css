@@ -1,0 +1,135 @@
+/* COLORS */
+/* 
+red: #661f2e
+blue: #163351
+bright blue: #183566
+
+*/
+
+
+/* MISSION CONTENT */
+
+.mission-block {
+  margin-top: 30px;
+}
+
+.mission-block h3 {
+  color: #7a1f2b; /* maroon accent */
+  margin-bottom: 5px;
+}
+
+.mission-intro {
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+.scripture-ref {
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+  color: #1f3a6d; /* royal blue */
+  margin-bottom: 10px;
+}
+
+.scripture {
+  font-style: italic;
+  line-height: 1.6;
+  color: #444;
+  border-left: 3px solid rgba(31, 58, 109, 0.2);
+  padding-left: 15px;
+  margin: 0;
+}
+
+/* divider between First and Second */
+.mission-divider {
+  margin: 40px 0;
+  height: 1px;
+  background: rgba(0,0,0,0.08);
+}
+
+
+
+/* CHURCH GOVERNMENT CONTENT */
+.belief-block {
+  margin-top: 25px;
+  line-height: 1.7;
+  color: #444;
+}
+
+/* subtle separation between blocks */
+.belief-block + .belief-block {
+  border-top: 1px solid rgba(0,0,0,0.06);
+  padding-top: 20px;
+}
+
+/* highlight inline scripture */
+.inline-scripture {
+  font-style: italic;
+  color: #1f3a6d; /* royal blue */
+}
+
+#government .section-card {
+    background-color: #163351;
+}
+
+#government .section-card h2 {
+    color: white;
+}
+
+.belief-block {
+    color: white;
+}
+
+
+
+/* LOCATION CONTENT */
+.location-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 30px;
+  margin-top: 30px;
+}
+
+.location-block h3 {
+  color: #1f3a6d; /* royal blue */
+  margin-bottom: 10px;
+}
+
+.location-block p {
+  line-height: 1.6;
+  color: #444;
+}
+
+/* subtle placeholder style */
+.placeholder {
+  color: #888;
+  font-style: italic;
+}
+
+
+/* CHURCH IMAGE */
+.about-image{
+  display: flex;
+  justify-content: center;
+  padding-bottom: 2rem;
+}
+
+.about-image img {
+  width: 50%;
+  opacity: 0.8;
+}
+
+.fade-image {
+  -webkit-mask-image: radial-gradient(circle, rgba(0,0,0,1) 65%, rgba(0,0,0,0) 90%);
+}
+
+
+/* Desktop layout */
+@media (min-width: 800px) {
+  .location-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .about-image img {
+   width: 30%;
+ }
+}

@@ -1,7 +1,7 @@
 /* COLORS */
 /* 
 red: #661f2e
-blue: #0d1b3b
+blue: #163351
 bright blue: #183566
 
 */
@@ -24,8 +24,9 @@ h1, h2, h3 {
 }
 
 .section-a {
-  border-bottom: 1px solid #d5d5d5;
-  box-shadow: 0 15px 40px rgba(0,0,0,0.06);  padding: 50px 20px;
+  /* border-bottom: 1px solid #d5d5d5; */
+  /* box-shadow: 0 15px 40px rgba(0,0,0,0.06);  padding: 50px 20px; */
+  /* box-shadow: 0 4px 5px rgba(0, 0, 0, 0.1); */
   margin: auto;
   align-items: center;
   /* background-color: #183566; */
@@ -34,8 +35,9 @@ h1, h2, h3 {
 }
 
 .section-b {
-  border-bottom: 1px solid #d5d5d5;
-  box-shadow: 0 15px 40px rgba(0,0,0,0.06);
+  /* border-bottom: 1px solid #d5d5d5; */
+  /* box-shadow: 0 15px 40px rgba(0,0,0,0.06); */
+  /* box-shadow: 0 4px 5px rgba(0, 0, 0, 0.1); */
   padding: 50px 20px;
   margin: auto;
   align-items: center;
@@ -65,7 +67,7 @@ header {
   background: linear-gradient(180deg, #f4f7fb 0%, #ffffff 60%);
   /* background: linear-gradient(169deg, #ffffff 41%, #cae7ff 108%); */
   color: black;
-  padding: 60px 20px;
+  padding: 100px 20px;
   text-align: center;
 }
 
@@ -79,8 +81,29 @@ header h1 {
   /* border: 1px solid #ccc; */
 }
 
-header img{
+.hero-container {
+  position: relative;
+  display: inline-block;
+  margin-top: 20px;
+}
+
+#address {
+  position: absolute;
+  width: max-content;
+  bottom: 20%;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.welcome-section {
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.hero-container img{
   mix-blend-mode: multiply;
+  /* margin-bottom: 6rem;  */
 }
 
 /* ------------------------------
@@ -93,12 +116,17 @@ header img{
   justify-content: center;
   gap: 20px;
   padding: 12px;
-  background: #f3f3f3;
+  background: #163351;
   flex-wrap: wrap;
+  
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+
 }
 
 .nav a {
-  color: #333;
+  color: #faf2f2;
   text-decoration: none;
   font-weight: bold;
   font-size: 0.95rem;
@@ -281,21 +309,20 @@ form fieldset input[type="radio"] {
   justify-content: center;
   margin: 40px 0;
   max-width: 100%;
+  gap: 5%;
 }
 
-.spacer-tree p {
-  color: rgb(192, 31, 31);
-  margin-left: 1.5rem;
-  margin-right: 1.5rem;
-}
 
 .spacer-tree img{
-  max-width: 25%;
+  max-width: 15%;
 }
 
-/* .spacer-whisp {
-  width: 100%;
-} */
+.spacer-tree div {
+  opacity: 0.2;
+  width: 30%;
+  border-bottom: 1px solid black;
+}
+
 
 
 
@@ -327,7 +354,11 @@ form fieldset input[type="radio"] {
   }
 
   header {
-    padding: 80px 20px;
+    padding: 10px 10px;
+  }
+
+  header > img {
+    margin-bottom: 0;
   }
 
   .section {
@@ -335,7 +366,11 @@ form fieldset input[type="radio"] {
   }
 
   .spacer-tree img {
-    max-width: 10%;
+    max-width: 7%;
   }
+
+  #address {
+  bottom: 10%;
+}
 
 }
