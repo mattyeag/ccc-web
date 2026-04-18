@@ -34,6 +34,41 @@ h1, h2, h3 {
 
 }
 
+.section-a .section-card {
+  background-color: #183566;
+  color: white;
+}
+
+.section-a .section-card h2 {
+  color: white;
+}
+
+.section-card details {
+  margin-bottom: 20px;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.06);
+  border-radius: 10px;
+}
+
+.section-card details summary {
+  font-size: 1.2em;
+  cursor: pointer;
+  margin-left: 1rem;
+}
+
+.section-card details div {
+  background-color: white;
+  color: black;
+  padding: 10px;
+  border-radius: 15px;
+}
+
+.section-card details:open div {
+  background-color: #183566;
+  color: white;
+}
+
 .section-b {
   /* border-bottom: 1px solid #d5d5d5; */
   /* box-shadow: 0 15px 40px rgba(0,0,0,0.06); */
