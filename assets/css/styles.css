@@ -64,7 +64,12 @@ h1, h2, h3 {
   border-radius: 15px;
 }
 
-.section-card details:open div {
+/* .section-card details:open div {
+  background-color: #183566;
+  color: white;
+} */
+
+#expand-content {
   background-color: #183566;
   color: white;
 }
