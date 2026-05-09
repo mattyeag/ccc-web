@@ -161,8 +161,8 @@ function saveSermonsCache(sermons) {
 
   const cacheData = {
     sermons: sermons,
-    expiresAt: Date.now() + (1000 * 60 * 5)
-    // 5 minutes
+    expiresAt: Date.now() + (1000 * 60 * 60 * 3)
+    // 3 hours
   };
 
   localStorage.setItem(
@@ -233,7 +233,7 @@ function showLoginForm() {
 }
 
 
-async function handleLogin() {
+function handleLogin() {
   const passcodeInput = document.getElementById('passcode-input');
   const loginBtn = document.getElementById('login-btn');
   const errorDiv = document.getElementById('login-error');
@@ -250,37 +250,45 @@ async function handleLogin() {
   loginBtn.disabled = true;
   errorDiv.style.display = 'none';
   
-  try {
-    const hash = await sha256(passcode);
-    
-    container.innerHTML =
-      '<img src="assets/img/loading.gif" alt="Loading..." style="max-width: 25%; height: auto; margin: auto; display: block;">';
+  sha256(passcode).then(hash => {
+    // Add a small delay to prevent potential timing issues on mobile
+    setTimeout(() => {
+      container.innerHTML =
+        '<img src="assets/img/loading.gif" alt="Loading..." style="max-width: 25%; height: auto; margin: auto; display: block;">';
 
-    const response = await fetch(
-      'APP_SCRIPT_URL' + encodeURIComponent(hash)
-    );
-    
-    const data = await response.json();
-    
-    console.log('Sermons data loaded:', data);
+      fetch(
+        'APP_SCRIPT_URL' + encodeURIComponent(hash)
+      )
+      .then(response => response.json())
+      .then(data => {
+        console.log('Sermons data loaded:', data);
 
-    if (!data.success) {
-      showLoginForm();
-      const newErrorDiv = document.getElementById('login-error');
-      newErrorDiv.textContent = data.message || 'Invalid passcode';
-      newErrorDiv.style.display = 'block';
-      return;
-    }
+        if (!data.success) {
+          showLoginForm();
+          const newErrorDiv = document.getElementById('login-error');
+          newErrorDiv.textContent = data.message || 'Invalid passcode';
+          newErrorDiv.style.display = 'block';
+          return;
+        }
 
-    saveSermonsCache(data.sermons);
-    renderSermons(data.sermons);
-  } catch (error) {
-    console.error('Error during login:', error);
+        saveSermonsCache(data.sermons);
+        renderSermons(data.sermons);
+      })
+      .catch(error => {
+        console.error('Error during login:', error);
+        showLoginForm();
+        const newErrorDiv = document.getElementById('login-error');
+        newErrorDiv.textContent = 'Sorry, an error occurred. Please try again.';
+        newErrorDiv.style.display = 'block';
+      });
+    }, 500);
+  }).catch(error => {
+    console.error('Error generating hash:', error);
     showLoginForm();
     const newErrorDiv = document.getElementById('login-error');
     newErrorDiv.textContent = 'Sorry, an error occurred. Please try again.';
     newErrorDiv.style.display = 'block';
-  }
+  });
 }
 
 
