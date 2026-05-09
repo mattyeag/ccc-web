@@ -251,7 +251,9 @@ async function handleLogin() {
   errorDiv.style.display = 'none';
   
   try {
+    alert('Starting login process...');
     const hash = await sha256(passcode);
+    alert('Hashed passcode: ' + hash);
     
     container.innerHTML =
       '<img src="assets/img/loading.gif" alt="Loading..." style="max-width: 25%; height: auto; margin: auto; display: block;">';
@@ -259,8 +261,10 @@ async function handleLogin() {
     const response = await fetch(
       'APP_SCRIPT_URL' + encodeURIComponent(hash)
     );
+    alert('Fetch response status: ' + response.status);
     
     const data = await response.json();
+    alert('Response data: ' + JSON.stringify(data));
     
     console.log('Sermons data loaded:', data);
 
@@ -275,6 +279,7 @@ async function handleLogin() {
     saveSermonsCache(data.sermons);
     renderSermons(data.sermons);
   } catch (error) {
+    alert('Error during login: ' + error.message);
     console.error('Error during login:', error);
     showLoginForm();
     const newErrorDiv = document.getElementById('login-error');
