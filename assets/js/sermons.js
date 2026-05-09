@@ -96,7 +96,6 @@ function renderPaginationControls(paginationEl, currentPage, totalPages, onPageC
 
 // Entry point
 function renderSermons(sermonsArray, options) {
-  console.log('Initializing sermon rendering with options:');
   const opts = Object.assign({ targetId: 'sermons-list', itemsPerPage: 5 }, options || {});
   const container = document.getElementById(opts.targetId);
   if (!container) {
@@ -105,6 +104,17 @@ function renderSermons(sermonsArray, options) {
 
   // Clear and create structure
   container.innerHTML = '';
+
+  // Add logout button
+  const logoutBtn = document.createElement('button');
+  logoutBtn.textContent = 'Logout';
+  logoutBtn.className = 'logout-btn';
+  logoutBtn.addEventListener('click', () => {
+    localStorage.removeItem('sermonsCache');
+    showLoginForm();
+  });
+  container.appendChild(logoutBtn);
+
   const grid = createGrid(container);
   const pagination = createPagination(container);
 
@@ -115,7 +125,7 @@ function renderSermons(sermonsArray, options) {
     grid: grid,
     pagination: pagination
   };
-  console.log('Sermons data:', state);
+  
   function getTotalPages() {
     return Math.max(1, Math.ceil(state.sermons.length / state.itemsPerPage));
   }
@@ -256,15 +266,12 @@ async function handleLogin() {
     container.innerHTML =
       '<img src="assets/img/loading.gif" alt="Loading..." style="max-width: 25%; height: auto; margin: auto; display: block;">';
 
-    alert('calling url: ' + url); // Debugging alert
     const response = await fetch(url).catch(err => {
       console.error('Fetch error:', err);
     });
 
     const data = await response.json();
     
-    console.log('Sermons data loaded:', data);
-
     if (!data.success) {
       showLoginForm();
       const newErrorDiv = document.getElementById('login-error');
