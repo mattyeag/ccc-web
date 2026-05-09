@@ -233,7 +233,7 @@ function showLoginForm() {
 }
 
 
-function handleLogin() {
+async function handleLogin() {
   const passcodeInput = document.getElementById('passcode-input');
   const loginBtn = document.getElementById('login-btn');
   const errorDiv = document.getElementById('login-error');
@@ -250,45 +250,38 @@ function handleLogin() {
   loginBtn.disabled = true;
   errorDiv.style.display = 'none';
   
-  sha256(passcode).then(hash => {
-    // Add a small delay to prevent potential timing issues on mobile
-    setTimeout(() => {
-      container.innerHTML =
-        '<img src="assets/img/loading.gif" alt="Loading..." style="max-width: 25%; height: auto; margin: auto; display: block;">';
+  try {
+    const hash = await sha256(passcode);
+    const url = 'APP_SCRIPT_URL' + encodeURIComponent(hash);
+    container.innerHTML =
+      '<img src="assets/img/loading.gif" alt="Loading..." style="max-width: 25%; height: auto; margin: auto; display: block;">';
 
-      fetch(
-        'APP_SCRIPT_URL' + encodeURIComponent(hash)
-      )
-      .then(response => response.json())
-      .then(data => {
-        console.log('Sermons data loaded:', data);
+    alert('calling url: ' + url); // Debugging alert
+    const response = await fetch(url).catch(err => {
+      console.error('Fetch error:', err);
+    });
 
-        if (!data.success) {
-          showLoginForm();
-          const newErrorDiv = document.getElementById('login-error');
-          newErrorDiv.textContent = data.message || 'Invalid passcode';
-          newErrorDiv.style.display = 'block';
-          return;
-        }
+    const data = await response.json();
+    
+    console.log('Sermons data loaded:', data);
 
-        saveSermonsCache(data.sermons);
-        renderSermons(data.sermons);
-      })
-      .catch(error => {
-        console.error('Error during login:', error);
-        showLoginForm();
-        const newErrorDiv = document.getElementById('login-error');
-        newErrorDiv.textContent = 'Sorry, an error occurred. Please try again.';
-        newErrorDiv.style.display = 'block';
-      });
-    }, 500);
-  }).catch(error => {
-    console.error('Error generating hash:', error);
+    if (!data.success) {
+      showLoginForm();
+      const newErrorDiv = document.getElementById('login-error');
+      newErrorDiv.textContent = data.message || 'Invalid passcode';
+      newErrorDiv.style.display = 'block';
+      return;
+    }
+
+    saveSermonsCache(data.sermons);
+    renderSermons(data.sermons);
+  } catch (error) {
+    console.error('Error during login:', error);
     showLoginForm();
     const newErrorDiv = document.getElementById('login-error');
     newErrorDiv.textContent = 'Sorry, an error occurred. Please try again.';
     newErrorDiv.style.display = 'block';
-  });
+  }
 }
 
 
