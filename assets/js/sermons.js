@@ -257,7 +257,7 @@ async function handleLogin() {
       '<img src="assets/img/loading.gif" alt="Loading..." style="max-width: 25%; height: auto; margin: auto; display: block;">';
 
     const response = await fetch(
-      'SCRIPT_URL_HERE' + encodeURIComponent(hash)
+      'APP_SCRIPT_URL' + encodeURIComponent(hash)
     );
     
     const data = await response.json();
