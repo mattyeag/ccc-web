@@ -173,7 +173,7 @@ header h1 {
   color: #faf2f2;
   text-decoration: none;
   font-weight: bold;
-  font-size: 0.95rem;
+  /* font-size: 0.95rem; */
 }
 
 /* DROPDOWN MENU */
@@ -250,6 +250,7 @@ header h1 {
 
 #intro {
   padding-top: 5rem;
+  padding-bottom: 5rem;
 }
 
 

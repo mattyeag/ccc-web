@@ -262,7 +262,13 @@ async function handleLogin() {
   
   try {
     const hash = await sha256(passcode);
+
+    /* 
+    APP_SCRIPT_URL is replaced with the actual URL in the githubAction workflow during deployment to protect the 
+    script from exposure in github.
+    */
     const url = 'APP_SCRIPT_URL' + encodeURIComponent(hash);
+    
     container.innerHTML =
       '<img src="assets/img/loading.gif" alt="Loading..." style="max-width: 25%; height: auto; margin: auto; display: block;">';
 
